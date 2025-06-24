@@ -64,7 +64,7 @@ def require_master_key(func):
         if request.args.get("masterkey") is None:
             abort(401)
 
-        if request.arg["masterkey"] != config.master_key:
+        if request.args["masterkey"] != config.master_key:
             abort(401)
 
         return func(*args, **kwargs)

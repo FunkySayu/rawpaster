@@ -1,0 +1,34 @@
+<h2>Stored Files</h2>
+
+<button (click)="loadFiles()">Refresh Files</button>
+
+<div *ngIf="error" class="error-message">
+  <p>{{ error }}</p>
+  <p><strong>Note:</strong> For the '/api/list' endpoint to work, you need to:
+    <ol>
+      <li>Ensure an API key is set in <code>frontend/src/app/services/api.ts</code> (currently placeholder <code>YOUR_API_KEY_HERE</code>).</li>
+      <li>That same API key must exist in the <code>authorized_keys.txt</code> file in the project root.</li>
+      <li>If <code>authorized_keys.txt</code> is empty or the key isn't there, the Flask API will return a 401 Unauthorized error.</li>
+      <li>Example: Add "testkey" (without quotes) on a new line in <code>authorized_keys.txt</code>, and set <code>private apiKey = 'testkey';</code> in <code>api.ts</code>.</li>
+    </ol>
+  </p>
+</div>
+
+<div *ngIf="files$ | async as files; else loadingOrError">
+  <p *ngIf="files.length === 0 && !error">No files found.</p>
+  <ul *ngIf="files.length > 0">
+    <li *ngFor="let file of files">
+      <span>{{ file.path }} (Timestamp: {{ file.timestamp | date:'medium' }})</span>
+      <button (click)="viewFile(file)">View Content</button>
+    </li>
+  </ul>
+</div>
+
+<ng-template #loadingOrError>
+  <p *ngIf="!error">Loading files...</p>
+</ng-template>
+
+<div *ngIf="selectedFilePath" class="file-content-viewer">
+  <h3>Content of {{ selectedFilePath }}</h3>
+  <pre>{{ selectedFileContent || 'No content to display or file is empty.' }}</pre>
+</div>

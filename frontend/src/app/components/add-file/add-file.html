@@ -1,0 +1,10 @@
+<div>
+  <h3>Add New File</h3>
+  <textarea [(ngModel)]="fileContent" placeholder="Enter file content here..." rows="10" cols="50"></textarea>
+  <br>
+  <button (click)="addFile()">Add File</button>
+
+  <div *ngIf="statusMessage" [ngClass]="{'status-success': !messageIsError, 'status-error': messageIsError}">
+    {{ statusMessage }}
+  </div>
+</div>

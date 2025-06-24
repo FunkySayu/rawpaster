@@ -1,0 +1,63 @@
+/* Basic styling for the file list and error messages */
+.error-message {
+  color: white; /* Text color for contrast against red background */
+  background-color: #ffdddd; /* Light red background */
+  border: 1px solid red;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px; /* Optional: for rounded corners */
+}
+
+.error-message p strong {
+  color: #c00; /* Darker red for the strong tag if needed */
+}
+/* Ensure the specific error text is clearly visible */
+.error-message p:first-of-type {
+    color: #D8000C; /* Or ensure this is white if background is dark red */
+    font-weight: bold;
+}
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.file-content-viewer {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.file-content-viewer h3 {
+  margin-top: 0;
+}
+
+.file-content-viewer pre {
+  white-space: pre-wrap; /* Wrap long lines */
+  word-wrap: break-word; /* Break words if necessary */
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  max-height: 300px; /* Limit height and make scrollable if needed */
+  overflow-y: auto;
+}

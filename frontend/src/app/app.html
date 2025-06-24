@@ -1,0 +1,15 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <nav>
+    <a routerLink="/files" routerLinkActive="active-link">View Files</a>
+    <span style="margin: 0 10px;">|</span>
+    <a routerLink="/add" routerLinkActive="active-link">Add New File</a>
+  </nav>
+</div>
+
+<hr>
+
+<!-- Routed components will display below -->
+<router-outlet></router-outlet>
