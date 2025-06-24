@@ -7,5 +7,16 @@
     <p>This is a simple flask server allowing a user to store raw output of command line.</p>
     <p>Check this on <a href="https://github.com/FunkySayu/rawpaster">GitHub !</a></p>
 
+    <h2>Uploaded Links</h2>
+    {% if links %}
+        <ul>
+            {% for link in links %}
+                <li><a href="/{{ link.fileid }}">{{ link.fileid }}</a> - Uploaded by key: {{ link.user_key }} on {{ link.timestamp }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No links have been uploaded yet.</p>
+    {% endif %}
+
     <p><small><small>And yes I'm lazy and I don't want to make a better welcome page.</small></small></p>
 </html>

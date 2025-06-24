@@ -49,3 +49,9 @@ ps aux | grep python | rawpaster
 
 You can create your own server and simply add a new key in the `authorized_keys.txt` file. If you want to
 use my server, feel free to ask for a key !
+
+# Features
+
+*   Upload text snippets via a simple POST request.
+*   List uploaded files associated with your key.
+*   **New:** The main page now lists all links that have been created.

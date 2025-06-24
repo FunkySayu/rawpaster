@@ -7,9 +7,10 @@ import re
 import logging
 import json
 
-from flask import Flask, request, abort, Response
+from flask import Flask, request, abort, Response, render_template_string
 from utils import generate_filename, require_key, get_authorized_keys, require_master_key
 import config
+import database
 
 
 app = Flask(__name__)
@@ -18,14 +19,16 @@ app.secret_key = os.urandom(128)
 
 @app.route("/")
 def index():
-
+    links = database.get_all_links_from_db()
     try:
         with open(config.index_page) as f:
-            data = f.read()
+            template_string = f.read()
     except FileNotFoundError:
-        data = "<html><head></head><body><h1>Index file not found !</h1></body></html>"
+        template_string = "<html><head><title>Raw Paster</title></head><body><h1>Index file not found !</h1><p>Cannot display links.</p></body></html>"
+        # Fallback if index.html is missing, though we'll create/modify it.
+        # Still, good to have a safe fallback.
 
-    return data
+    return render_template_string(template_string, links=links)
 
 
 @app.route("/<fileid>")
@@ -56,6 +59,8 @@ def add_content(key):
     with open(os.path.join(key_folder, target_name), "w") as f:
         logging.info("User identified by key '%s' has pushed a file.", key)
         f.write(request.data.decode())
+
+    database.add_link_to_db(target_name, key)
 
     return "/%s" % target_name
 
@@ -102,4 +107,5 @@ def remove_key(key):
 
 
 if __name__ == "__main__":
+    database.init_db()
     app.run(host="0.0.0.0")  # FIXME

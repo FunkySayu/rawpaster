@@ -1,0 +1,10 @@
+# SQLite database file
+links.db
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# OS generated files
+.DS_Store
+Thumbs.db
