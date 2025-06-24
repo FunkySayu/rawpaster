@@ -1,0 +1,26 @@
+/* Global styles for app.component */
+nav {
+  padding: 10px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+hr {
+    margin-bottom: 20px;
+}
